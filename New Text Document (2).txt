@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+    color: white;
+}
+html,body {
+    height: 100%;
+    width: 100%;
+    /* margin: 0; */
+}
+#nav {
+    height: 66px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 150px;
+    justify-content: flex-start;
+    gap: 45px;
+    position: fixed;
+    z-index: 100;
+}
+
+
+#cursor {
+    /* display: inline-block; */
+    position: fixed;
+    width: 25px; /* Set the size of the cursor */
+    height: 20px;
+    background-color: rgb(31, 209, 126);
+    border-radius: 50%; /* Make it round */
+    z-index: 9999;
+}
+#cursor-blurr {
+    /* display: inline-block; */
+    position: fixed;
+    width: 300px; /* Set the size of the cursor */
+    height: 300px;
+    background-color: rgba(80, 202, 49, 0.222);
+    border-radius: 50%; /* Make it round */
+    z-index: 9;
+    filter: blur(30px);
+}
+
+nav img {
+    height: 80px;
+}
+#nav h4 {
+    text-transform: uppercase;
+    box-shadow: black;
+   
+}
+video {
+    /* height: 100%; */
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+}
+#main {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.37);
+}
+#page1 {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+#page1 h1 {
+    font-size: 140px;
+    font-weight: 900;
+    position: relative;
+    color: black;
+    -webkit-text-stroke: 1px #95c11e;
+    margin-top:100px;
+
+}
+#page1 h3 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#page1 p {
+    font-size: 20px;
+    font-weight: 400; /* Updated font-weight to 400 (normal) */
+    width: 40%;
+}
+#page1 h1::after {
+    content: "Drink.Eat.Play";
+    position:absolute;
+    color: rgb(252, 251, 251);
+    top: -6px;
+    left:-6px;
+    
+
+}
+#page2{
+    height: 100vh;
+    width:100%;
+    z-index: 10;
+}
+#scrollerin{
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll 34s linear infinite;
+    animation-play-state: running;  
+}
+#scroller{
+    /* background-color: red; */
+    /* display: inline-block; */
+    white-space: nowrap;
+    overflow-x:auto ;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 10;    
+}
+#scroller::-webkit-scrollbar{
+    display: none;
+}
+#scroller h4{
+    display: inline-block;
+    font-size: 90px;
+    font-weight: 900;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-right: 10px;
+    color: transparent;
+    -webkit-text-stroke: 0.2px rgb(237, 243, 240);
+    margin-top:3%;
+    transition: all linear 0.5s;
+    
+}
+#scroller h4:hover{
+    color:#95c11e
+}
+@keyframes scroll {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+    
+}
+#about-us{
+    /* background-color: red; */
+    height: vh;
+    display: flex;
+    justify-content: space-around;
+    margin:0 50px;
+    margin-top:40px;
+    position: relative;
+    z-index:10;
+}
+#about-us img{
+    height: 200px;
+    width:200px;
+    border-radius:40px;
+}
+#about-us-in{
+    width:40%;
+    text-align: center;
+}
+#about-us-in h3{
+    font-size: 50px;
+    font-weight: 800;
+    margin-bottom: 30px;
+
+}
+p{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+}
+/* #cards-container{
+    background-color: #95c11e;
+    height:400px;
+    width:100% */
+/* } */
+/* .cards{
+    height:435px;
+    width:362px;
+    background-color: aqua;
+
+} */
+
+
+Java scritp code : 
+
+var crsr = document.querySelector(("#cursor"))
+document.addEventListener("mousemove",function(dets){
+crsr.style.left = dets.x+"px"
+crsr.style.top = dets.y+"px"  
+
+})
+var blur = document.querySelector(("#cursor-blurr"))
+document.addEventListener("mousemove",function(dets){
+blur.style.left = dets.x - 150+"px"
+blur.style.top = dets.y - 150 +"px"  
+
+})
+document.addEventListener("mouseleave", function () {
+    // Reset the cursor's position when the cursor leaves the webpage
+    crsr.style.display = "none"; // Hide the cursor
+});
+document.addEventListener("mouseenter", function () {
+    // Reset the cursor's position when the cursor leaves the webpage
+    crsr.style.display = "block"; // Hide the cursor
+});
+document.addEventListener("mouseleave", function () {
+    // Reset the cursor's position when the cursor leaves the webpage
+    blur.style.display = "none"; // Hide the cursor
+});
+document.addEventListener("mouseenter", function () {
+    // Reset the cursor's position when the cursor leaves the webpage
+    blur.style.display = "block"; // Hide the cursor
+});
+gsap.to("#nav",{
+    backgroundColor : "#000",
+    duration:0.5,
+    height:"100px",
+    scrollTrigger:{
+        trigger:"#nav",
+        scroller:"body",
+        // markers:true,
+        start:"top -10%",
+        end: "top-=11%",
+        scrub:2
+    }
+})
+gsap.to("#main",{
+    backgroundColor:"#000",
+    scrollTrigger:{
+        trigger:"#main",
+        scroller:"body",
+        // markers:true,
+        start:"top -10%",
+        end:"top -70%",
+        scrub:1
+        
+    }
+})
+
